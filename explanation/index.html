@@ -85,7 +85,23 @@
 
 <!-- Contingut principal -->
 <div class="content-container">
-    <h1>Benvinguts</h1>
+    <h1>Explicació del codi/h1>
+      <pre><code>
+    let fft;//crea espai a la memoria anomenat fft 
+    fft=new p5.FFT();//crea un objecte de la clase fft que tge totes les caracteristiques d'una transformada de Fourier rapida 
+    //let leire; crearia un espai a la memoria per un objecte anomenat leire
+    //leire=new homosapiens(); crearia un objecte de la clase homosapiens amb totes les seves caracteristiques 
+    //per exemple el metode getEnergy() faria la caracteristica de menjar
+    //si vull fer menjar a la leire he d'escriure leire.getEnergy(); aixo es diu el metode del punt, que al posar un punt
+    //aplico un metode, per fer-lo leire.study(). study getEnergy son metodes de clase homosapiens 
+    let bass=fft.getEnergy("bass")//crea variable greu
+    //getEnergy("bass") calcula la energia de totes les frecuencies greus i dona un numero entre 0 i 255 i aquest numero el
+    //guarda en un variable anomenada bass 
+    let treble=fft.getEnergy/("trebele")// crea variable aguda 
+    //calcula la energia de totes les frequecies agudes i dona un numero enntre el 0 i el 255i el guardes en teble.
+    let r=map(bass,0,255,50,255);// crea color vermell 
+    //la linia anterior converteix els sons aguts en tons vermellosos, perque l'hem anomenta 
+          
     <p>Em dic Nom i sóc alumne del curs XX de <a href="https://agora.xtec.cat/ies-pompeu-fabra-martorell/">l'institut Pompeu Fabra</a></p>
     <p>A continuació veuràs un llistat amb diferents projectes que farem durant el curs:</p>
     <ul>
