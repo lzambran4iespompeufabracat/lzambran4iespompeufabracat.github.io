@@ -1,15 +1,21 @@
 <html>
 <head>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.3/p5.min.js"
-    integrity="sha512-I0Pwwz3PPNQkWes+rcSoQqikKFfRmTfGQrcNzZbm8ALaUyJuFdyRinl805shE8xT6iEWsWgvRxdXb3yhQNXKoA==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.3/addons/p5.sound.min.js" 
-    integrity="sha512-WzkwpdWEMAY/W8WvP9KS2/VI6zkgejR4/KTxTl4qHx0utqeyVE0JY+S1DlMuxDChC7x0oXtk/ESji6a0lP/Tdg=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <!--Les línies de més amuntconnecten el nostre codi amb p5.js de forma que entendrà aquest llenguatge, per exemple el·lipse ens dibujarà una el·lipse,
-  arc ens dibuxarà un arc, fill ens omplirà de color, museXens permetrà moure amb el ratolí...Integrity és un número que en està en base 64 
-  (lletres,minúscules, lletres majúscules i números)que permet comprovar que p5.js es carregui bè-->
-</head> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.3/p5.min.js" integrity="sha512-I0Pwwz3PPNQkWes+rcSoQqikKFfRmTfGQrcNzZbm8ALaUyJuFdyRinl805shE8xT6iEWsWgvRxdXb3yhQNXKoA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.3/addons/p5.sound.min.js" integrity="sha512-WzkwpdWEMAY/W8WvP9KS2/VI6zkgejR4/KTxTl4qHx0utqeyVE0JY+S1DlMuxDChC7x0oXtk/ESji6a0lP/Tdg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
 <body>
+<script>
+function setup () {
+CreateCanvas(500,500);//mesura de la zona de dibuix//
+funtion draw () {
+background (247, 245, 212);//fons verd 
+fill(86, 42, 11 );//color de la cara 
+el·lipse (250,250,150,220);//cara 
+fill(13, 193, 255 );//color de l'ull dret 
+el·lipse (190,215,70,40);//ull dret  
+fill(180, 6, 240 );//color de l'ull esquerra  
+el·lipse (310,215,70,40);//ull esquerra 
+}
+</script>
 </body>
 </html>
