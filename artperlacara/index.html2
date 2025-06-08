@@ -1,0 +1,79 @@
+import cv2
+from deepface import DeepFace
+import matplotlib.pyplot as plt
+import matplotlib.patches as patches
+
+# Funció per escollir el color de fons segons emoció
+def color_de_fons(emocio):
+    colors = {
+        'happy': '#FFFACD',      # Llimona clar
+        'sad': '#ADD8E6',        # Blau clar
+        'angry': '#F08080',      # Vermell suau
+        'surprise': '#E6E6FA',   # Lavanda
+        'disgust': '#98FB98',    # Verd pàl·lid
+        'fear': '#D8BFD8',       # Lila clar
+    }
+    return colors.get(emocio, '#D3D3D3')  # Gris per defecte
+
+# Captura imatge de la càmera
+cap = cv2.VideoCapture(0)
+ret, frame = cap.read()
+cap.release()
+
+if not ret:
+    print("Error capturant imatge.")
+    exit()
+
+# Converteix a RGB
+rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
+# Detecta emoció amb DeepFace
+result = DeepFace.analyze(rgb_frame, actions=['emotion'], enforce_detection=False)
+emotion = result[0]['dominant_emotion']
+print("Emoció detectada:", emotion)
+
+# Configura el gràfic
+fig, ax = plt.subplots()
+fons = color_de_fons(emotion)
+fig.patch.set_facecolor(fons)
+ax.set_facecolor(fons)
+ax.set_xlim(0, 10)
+ax.set_ylim(0, 10)
+ax.set_aspect('equal')
+plt.axis('off')
+
+# Cara
+cara = patches.Circle((5, 5), 3, facecolor='peachpuff', edgecolor='black')
+ax.add_patch(cara)
+
+# Ulls
+ull_dret = patches.Circle((4, 6), 0.3, facecolor='black')
+ull_esquerre = patches.Circle((6, 6), 0.3, facecolor='black')
+ax.add_patch(ull_dret)
+ax.add_patch(ull_esquerre)
+
+# Boca (es pot personalitzar més si vols)
+boca = patches.Arc((5, 4), 2, 1, theta1=0, theta2=180, color='black')
+ax.add_patch(boca)
+
+# Llàgrima o element visual segons emoció
+if emotion == 'happy':
+    llagrima = patches.Ellipse((4, 5.3), 0.2, 0.4, facecolor='gold', edgecolor='orange')
+elif emotion == 'sad':
+    llagrima = patches.Ellipse((4, 5.3), 0.2, 0.4, facecolor='blue', edgecolor='darkblue')
+elif emotion == 'angry':
+    llagrima = patches.RegularPolygon((4, 5.3), 3, 0.2, orientation=0, facecolor='red')
+elif emotion == 'surprise':
+    llagrima = patches.Rectangle((3.9, 5.1), 0.2, 0.4, facecolor='white')
+elif emotion == 'disgust':
+    llagrima = patches.RegularPolygon((4, 5.3), 4, 0.2, orientation=0.785, facecolor='green')
+elif emotion == 'fear':
+    llagrima = patches.Arc((4, 5.3), 0.4, 0.4, theta1=0, theta2=180, edgecolor='purple')
+else:
+    llagrima = patches.Ellipse((4, 5.3), 0.2, 0.4, facecolor='grey')
+
+ax.add_patch(llagrima)
+
+# Títol
+plt.title(f"Emoció detectada: {emotion}", fontsize=14)
+plt.show()
